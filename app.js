@@ -1,7 +1,7 @@
 const siteConfig = {
-  appName: 'Gestão de Ordens de Serviço',
-  whatsapp: '', // Ex.: 5511999999999 — somente dígitos, incluindo país e DDD.
-  email: '', // Ex.: contato@seudominio.com
+  appName: 'FluxOS',
+  whatsapp: '5581973131156', // Somente dígitos, incluindo país e DDD.
+  email: 'fluxos.gestaofacil@gmail.com',
   whatsappMessage: 'Olá! Tenho interesse no aplicativo de gestão de ordens de serviço e gostaria de saber mais.',
   emailSubject: 'Interesse no aplicativo de gestão de ordens de serviço',
 };
@@ -25,6 +25,10 @@ function setupContactLinks() {
     link.href = target;
     if (link.dataset.contact === 'whatsapp') link.target = '_blank';
   });
+
+  if (whatsappUrl && emailUrl) {
+    document.querySelectorAll('.contact-note').forEach((note) => note.remove());
+  }
 }
 
 setupContactLinks();

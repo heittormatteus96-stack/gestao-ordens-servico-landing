@@ -1,4 +1,4 @@
-# Landing page — Gestão de Ordens de Serviço
+# Landing page — FluxOS
 
 Landing page estática, responsiva e sem dependências para apresentar um aplicativo de gestão de ordens de serviço.
 

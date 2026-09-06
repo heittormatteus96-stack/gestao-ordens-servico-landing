@@ -3,7 +3,11 @@ const siteConfig = {
   whatsapp: '5581973131156', // Somente dígitos, incluindo país e DDD.
   email: 'fluxos.gestaofacil@gmail.com',
   whatsappMessage: 'Olá! Tenho interesse no aplicativo de gestão de ordens de serviço e gostaria de saber mais.',
-  emailMessage: 'Olá! Tenho interesse no FluxOS e gostaria de saber mais.',
+  interestMessages: {
+    essencial: 'Olá! Tenho interesse no plano Essencial do FluxOS e gostaria de saber mais.',
+    plus: 'Olá! Tenho interesse no plano Plus do FluxOS e gostaria de saber mais.',
+    undecided: 'Olá! Tenho interesse no FluxOS e gostaria de saber mais, mas ainda não decidi qual plano é ideal para minha operação.',
+  },
   emailSubject: 'Interesse no aplicativo de gestão de ordens de serviço',
 };
 
@@ -86,9 +90,10 @@ function setupEmailDialog() {
   const emailAddress = document.querySelector('#email-address');
   const emailMessage = document.querySelector('#email-message');
   const status = document.querySelector('#copy-status');
+  const messageButton = dialog.querySelector('[data-copy="message"]');
+  let selectedMessage = '';
 
   emailAddress.textContent = siteConfig.email;
-  emailMessage.textContent = siteConfig.emailMessage;
 
   document.querySelectorAll('[data-contact="email"]').forEach((link) => {
     link.addEventListener('click', (event) => {
@@ -111,13 +116,22 @@ function setupEmailDialog() {
       document.execCommand('copy');
       field.remove();
     }
-    status.textContent = `${label} copiado.`;
+    status.textContent = label;
   }
 
   dialog.querySelectorAll('[data-copy]').forEach((button) => {
     button.addEventListener('click', () => {
       const isEmail = button.dataset.copy === 'email';
-      copyText(isEmail ? siteConfig.email : siteConfig.emailMessage, isEmail ? 'E-mail' : 'Mensagem');
+      copyText(isEmail ? siteConfig.email : selectedMessage, isEmail ? 'E-mail copiado.' : 'Mensagem copiada.');
+    });
+  });
+
+  dialog.querySelectorAll('[data-interest]').forEach((input) => {
+    input.addEventListener('change', () => {
+      selectedMessage = siteConfig.interestMessages[input.dataset.interest];
+      emailMessage.textContent = selectedMessage;
+      messageButton.disabled = false;
+      status.textContent = '';
     });
   });
 

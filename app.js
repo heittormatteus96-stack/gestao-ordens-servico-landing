@@ -92,13 +92,18 @@ function setupEmailDialog() {
   const status = document.querySelector('#copy-status');
   const messageButton = dialog.querySelector('[data-copy="message"]');
   let selectedMessage = '';
+  const particles = '<span class="neon-checkbox__particles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>';
 
   emailAddress.textContent = siteConfig.email;
+  dialog.querySelectorAll('.neon-checkbox__frame').forEach((frame) => frame.insertAdjacentHTML('beforeend', particles));
 
   document.querySelectorAll('[data-contact="email"]').forEach((link) => {
     link.addEventListener('click', (event) => {
       event.preventDefault();
-      if (!dialog.open) dialog.showModal();
+      if (!dialog.open) {
+        document.body.style.overflow = 'hidden';
+        dialog.showModal();
+      }
     });
   });
 
@@ -135,7 +140,10 @@ function setupEmailDialog() {
     });
   });
 
-  dialog.addEventListener('close', () => { status.textContent = ''; });
+  dialog.addEventListener('close', () => {
+    document.body.style.overflow = '';
+    status.textContent = '';
+  });
 }
 
 setupContactLinks();

@@ -9,7 +9,8 @@
     <meta property="og:description" content="Uma solução para simplificar a gestão das suas ordens de serviço." />
     <meta property="og:type" content="website" />
     <title>FluxOS — Gestão de Ordens de Serviço</title>
-    <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="copy-button.css" />
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -88,14 +89,13 @@
         <p class="eyebrow">ENTRAR EM CONTATO</p>
         <h2 id="email-dialog-title">Envie um e-mail para <em>conhecer o FluxOS.</em></h2>
         <p>Copie o endereço ou a mensagem abaixo e envie quando preferir.</p>
-        <div class="copy-field"><span class="copy-field__label">E-MAIL</span><strong id="email-address">fluxos.gestaofacil@gmail.com</strong><button class="copy-button" type="button" data-copy="email">Copiar e-mail</button></div>
+        <div class="copy-field"><span class="copy-field__label">E-MAIL</span><strong id="email-address">fluxos.gestaofacil@gmail.com</strong><button class="copy-button" type="button" data-copy="email"><span class="copy-button__icon copy-button__icon--copy" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></span><span class="copy-button__icon copy-button__icon--check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span><span class="copy-button__label">Copiar e-mail</span></button></div>
         <fieldset class="plan-choice"><legend>QUAL PLANO DESPERTA SEU INTERESSE?</legend>
           <label class="interest-option"><span class="neon-checkbox"><input type="radio" name="plan-interest" value="essencial" data-interest="essencial"/><span class="neon-checkbox__frame"><span class="neon-checkbox__glow"></span><span class="neon-checkbox__box"></span><span class="neon-checkbox__check-container"><svg class="neon-checkbox__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9.5 17 19 7"/></svg></span><span class="neon-checkbox__borders"><span></span><span></span><span></span><span></span></span></span></span><span><strong>Plano Essencial</strong><small>Quero conhecer os recursos do plano Essencial.</small></span></label>
           <label class="interest-option"><span class="neon-checkbox"><input type="radio" name="plan-interest" value="plus" data-interest="plus"/><span class="neon-checkbox__frame"><span class="neon-checkbox__glow"></span><span class="neon-checkbox__box"></span><span class="neon-checkbox__check-container"><svg class="neon-checkbox__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9.5 17 19 7"/></svg></span><span class="neon-checkbox__borders"><span></span><span></span><span></span><span></span></span></span></span><span><strong>Plano Plus</strong><small>Quero conhecer os recursos do plano Plus.</small></span></label>
           <label class="interest-option"><span class="neon-checkbox"><input type="radio" name="plan-interest" value="undecided" data-interest="undecided"/><span class="neon-checkbox__frame"><span class="neon-checkbox__glow"></span><span class="neon-checkbox__box"></span><span class="neon-checkbox__check-container"><svg class="neon-checkbox__check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9.5 17 19 7"/></svg></span><span class="neon-checkbox__borders"><span></span><span></span><span></span><span></span></span></span></span><span><strong>Ainda não decidi</strong><small>Quero entender qual plano combina com minha operação.</small></span></label>
         </fieldset>
-        <div class="copy-field copy-field--message"><span class="copy-field__label">MENSAGEM SUGERIDA</span><span id="email-message">Selecione uma opção acima para gerar sua mensagem.</span><button class="copy-button" type="button" data-copy="message" disabled>Copiar mensagem</button></div>
-        <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+        <div class="copy-field copy-field--message"><span class="copy-field__label">MENSAGEM SUGERIDA</span><span id="email-message">Selecione uma opção acima para gerar sua mensagem.</span><button class="copy-button" type="button" data-copy="message" disabled><span class="copy-button__icon copy-button__icon--copy" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></span><span class="copy-button__icon copy-button__icon--check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span><span class="copy-button__label">Copiar mensagem</span></button></div>
       </form>
     </dialog>
     <footer class="site-footer"><div class="section-wrap footer-inner"><a class="fluxos-logo" href="#inicio" aria-label="FluxOS — início"><img class="fluxos-logo__image" src="assets/fluxos-logo-transparent.png" alt="" width="657" height="157" /></a><div><a class="contact-link" data-contact="whatsapp" href="#contato">WhatsApp</a><a class="contact-link" data-contact="email" href="#contato">E-mail</a></div><p>© <span id="year"></span> FluxOS</p></div></footer>

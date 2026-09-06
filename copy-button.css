@@ -1,0 +1,25 @@
+.copy-button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  min-width:122px;
+  overflow:hidden;
+  border-radius:10px;
+  transform:translateZ(0);
+  transition:transform .28s cubic-bezier(.16,1,.3,1),background .25s ease,border-color .25s ease;
+}
+
+.copy-button:hover:not(:disabled) { transform:translateY(-1px) scale(1.045); }
+.copy-button:active:not(:disabled) { transform:scale(.95); }
+.copy-button__icon { display:grid; grid-template-columns:1fr; grid-template-rows:1fr; width:15px; height:15px; color:#e7e3ff; transition:opacity .22s ease,transform .32s cubic-bezier(.16,1,.3,1),filter .22s ease; }
+.copy-button__icon svg { width:15px; height:15px; grid-area:1/1; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.copy-button__icon--check { width:0; opacity:0; transform:scale(.68); color:#d8d0ff; }
+.copy-button__label { min-width:0; transition:opacity .2s ease,filter .2s ease,transform .28s cubic-bezier(.16,1,.3,1); }
+.copy-button[data-copied] { color:#f4f1ff; background:rgba(158,141,255,.25); border-color:rgba(210,201,255,.64); box-shadow:0 0 20px rgba(152,130,255,.16); }
+.copy-button[data-copied] .copy-button__icon--copy { width:0; opacity:0; transform:scale(.68) rotate(-12deg); filter:blur(3px); }
+.copy-button[data-copied] .copy-button__icon--check { width:15px; opacity:1; transform:scale(1); animation:copy-check-in .42s cubic-bezier(.16,1,.3,1) both; }
+.copy-button[data-copied] .copy-button__label { animation:copy-label-in .32s cubic-bezier(.16,1,.3,1) both; }
+@keyframes copy-check-in { from { opacity:0; transform:scale(.45) rotate(-14deg); } to { opacity:1; transform:scale(1) rotate(0); } }
+@keyframes copy-label-in { from { opacity:0; filter:blur(4px); transform:translateY(3px); } to { opacity:1; filter:blur(0); transform:translateY(0); } }
+@media (prefers-reduced-motion:reduce) { .copy-button,.copy-button__icon,.copy-button__label { transition:none; } .copy-button[data-copied] .copy-button__icon--check,.copy-button[data-copied] .copy-button__label { animation:none; } }

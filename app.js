@@ -89,9 +89,9 @@ function setupEmailDialog() {
   const dialog = document.querySelector('#email-dialog');
   const emailAddress = document.querySelector('#email-address');
   const emailMessage = document.querySelector('#email-message');
-  const status = document.querySelector('#copy-status');
   const messageButton = dialog.querySelector('[data-copy="message"]');
   let selectedMessage = '';
+  const copiedTimers = new WeakMap();
   const particles = '<span class="neon-checkbox__particles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>';
 
   emailAddress.textContent = siteConfig.email;
@@ -107,7 +107,7 @@ function setupEmailDialog() {
     });
   });
 
-  async function copyText(value, label) {
+  async function copyText(value) {
     try {
       await navigator.clipboard.writeText(value);
     } catch {
@@ -121,13 +121,24 @@ function setupEmailDialog() {
       document.execCommand('copy');
       field.remove();
     }
-    status.textContent = label;
+  }
+
+  function showCopied(button) {
+    const label = button.querySelector('.copy-button__label');
+    clearTimeout(copiedTimers.get(button));
+    button.dataset.copied = 'true';
+    label.textContent = 'Copiado!';
+    copiedTimers.set(button, setTimeout(() => {
+      delete button.dataset.copied;
+      label.textContent = button.dataset.copy === 'email' ? 'Copiar e-mail' : 'Copiar mensagem';
+    }, 2000));
   }
 
   dialog.querySelectorAll('[data-copy]').forEach((button) => {
     button.addEventListener('click', () => {
       const isEmail = button.dataset.copy === 'email';
-      copyText(isEmail ? siteConfig.email : selectedMessage, isEmail ? 'E-mail copiado.' : 'Mensagem copiada.');
+      copyText(isEmail ? siteConfig.email : selectedMessage);
+      showCopied(button);
     });
   });
 
@@ -136,13 +147,16 @@ function setupEmailDialog() {
       selectedMessage = siteConfig.interestMessages[input.dataset.interest];
       emailMessage.textContent = selectedMessage;
       messageButton.disabled = false;
-      status.textContent = '';
     });
   });
 
   dialog.addEventListener('close', () => {
     document.body.style.overflow = '';
-    status.textContent = '';
+    dialog.querySelectorAll('[data-copied]').forEach((button) => {
+      clearTimeout(copiedTimers.get(button));
+      delete button.dataset.copied;
+      button.querySelector('.copy-button__label').textContent = button.dataset.copy === 'email' ? 'Copiar e-mail' : 'Copiar mensagem';
+    });
   });
 }
 

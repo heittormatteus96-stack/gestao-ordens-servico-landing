@@ -3,6 +3,7 @@ const siteConfig = {
   whatsapp: '5581973131156', // Somente dígitos, incluindo país e DDD.
   email: 'fluxos.gestaofacil@gmail.com',
   whatsappMessage: 'Olá! Tenho interesse no aplicativo de gestão de ordens de serviço e gostaria de saber mais.',
+  emailMessage: 'Olá! Tenho interesse no FluxOS e gostaria de saber mais.',
   emailSubject: 'Interesse no aplicativo de gestão de ordens de serviço',
 };
 
@@ -80,6 +81,50 @@ function setupScrollReveals() {
   }, { passive: true });
 }
 
+function setupEmailDialog() {
+  const dialog = document.querySelector('#email-dialog');
+  const emailAddress = document.querySelector('#email-address');
+  const emailMessage = document.querySelector('#email-message');
+  const status = document.querySelector('#copy-status');
+
+  emailAddress.textContent = siteConfig.email;
+  emailMessage.textContent = siteConfig.emailMessage;
+
+  document.querySelectorAll('[data-contact="email"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (!dialog.open) dialog.showModal();
+    });
+  });
+
+  async function copyText(value, label) {
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {
+      const field = document.createElement('textarea');
+      field.value = value;
+      field.setAttribute('readonly', '');
+      field.style.position = 'fixed';
+      field.style.opacity = '0';
+      document.body.append(field);
+      field.select();
+      document.execCommand('copy');
+      field.remove();
+    }
+    status.textContent = `${label} copiado.`;
+  }
+
+  dialog.querySelectorAll('[data-copy]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const isEmail = button.dataset.copy === 'email';
+      copyText(isEmail ? siteConfig.email : siteConfig.emailMessage, isEmail ? 'E-mail' : 'Mensagem');
+    });
+  });
+
+  dialog.addEventListener('close', () => { status.textContent = ''; });
+}
+
 setupContactLinks();
 setupScrollReveals();
+setupEmailDialog();
 document.querySelector('#year').textContent = new Date().getFullYear();

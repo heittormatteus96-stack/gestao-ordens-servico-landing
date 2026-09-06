@@ -82,6 +82,17 @@
         <div class="section-wrap contact-content"><p class="eyebrow">PRÓXIMO PASSO</p><h2 id="contato-title">Quer conhecer o <em>aplicativo?</em></h2><p>Entre em contato para saber mais e conversar sobre as necessidades da sua operação.</p><div class="button-row"><a class="button button-primary contact-link" data-contact="whatsapp" href="#contato">Falar pelo WhatsApp <span aria-hidden="true">↗</span></a><a class="button button-secondary contact-link" data-contact="email" href="#contato">Entrar em contato por e-mail</a></div><p class="contact-note" id="contact-note">Informe seus canais de contato para ativar os botões.</p></div>
       </section>
     </main>
+    <dialog class="email-dialog" id="email-dialog" aria-labelledby="email-dialog-title">
+      <form method="dialog" class="email-dialog__card">
+        <button class="email-dialog__close" type="submit" aria-label="Fechar janela">×</button>
+        <p class="eyebrow">ENTRAR EM CONTATO</p>
+        <h2 id="email-dialog-title">Envie um e-mail para <em>conhecer o FluxOS.</em></h2>
+        <p>Copie o endereço ou a mensagem abaixo e envie quando preferir.</p>
+        <div class="copy-field"><span class="copy-field__label">E-MAIL</span><strong id="email-address">fluxos.gestaofacil@gmail.com</strong><button class="copy-button" type="button" data-copy="email">Copiar e-mail</button></div>
+        <div class="copy-field"><span class="copy-field__label">MENSAGEM SUGERIDA</span><span id="email-message">Olá! Tenho interesse no FluxOS e gostaria de saber mais.</span><button class="copy-button" type="button" data-copy="message">Copiar mensagem</button></div>
+        <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+      </form>
+    </dialog>
     <footer class="site-footer"><div class="section-wrap footer-inner"><a class="fluxos-logo" href="#inicio" aria-label="FluxOS — início"><img class="fluxos-logo__image" src="assets/fluxos-logo-transparent.png" alt="" width="657" height="157" /></a><div><a class="contact-link" data-contact="whatsapp" href="#contato">WhatsApp</a><a class="contact-link" data-contact="email" href="#contato">E-mail</a></div><p>© <span id="year"></span> FluxOS</p></div></footer>
     <div class="mobile-contact"><a class="contact-link" data-contact="whatsapp" href="#contato">Falar pelo WhatsApp <span aria-hidden="true">↗</span></a></div>
     <script src="app.js"></script>

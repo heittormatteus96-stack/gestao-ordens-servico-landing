@@ -74,15 +74,6 @@ function setupScrollReveals() {
     item.addEventListener('focusin', () => reveal(item), { once: true });
   });
   revealVisibleItems();
-  let scrolling = false;
-  window.addEventListener('scroll', () => {
-    if (scrolling) return;
-    scrolling = true;
-    window.requestAnimationFrame(() => {
-      revealVisibleItems();
-      scrolling = false;
-    });
-  }, { passive: true });
 }
 
 function setupEmailDialog() {
